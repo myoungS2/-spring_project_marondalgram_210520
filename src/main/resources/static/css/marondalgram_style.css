@@ -1,2 +1,14 @@
 @charset "UTF-8";
 
+/* a {display:none;} */
+
+#logo {color:#000000; font-weight:bold; font-size:30px;}
+#signup {color:#d0d0d0;}
+#idCheckHref {color:#d0d0d0;}
+
+#wrap {margin: auto; height:1000px; width: 1200px;}
+
+header {height: 100px;}
+
+.signin {height: 500px;}
+.signup {height: 500px;} 
