@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <div class="form-group">
 	<div class="w-100">
-		<form id="signupForm" method="post" action="/user/sign_up">
+		<form id="signUpForm" method="post" action="/user/sign_up">
 			<div class="d-flex">
 				<input type="text" id="loginIdInput" name="loginId" class="form-control mt-3"  placeholder="ID">
-				<a id="idCheckHref" href="#" class="mt-3 ml-3">IDcheck</a>
+				<a id="idCheckHref" type="button" class="mt-3 ml-3">IDcheck</a>
 			</div>
 			<div id="idCheckDuplicated" class="small text-danger d-none">this ID has already been used.</div><br>
 			<div id="idCheckOk" class="small text-success d-none">you can create account with this ID.</div>
@@ -62,11 +62,12 @@
 				let loginId = $('#loginIdInput').val().trim();
 				if (loginId == '') {
 					alert("ENTER YOUR ID");
+					return;
 				}
 				let password = $('#passwordInput').val();
 				let confirmPassword = $('#passwordConfirmInput').val();
 				if (password == '' || confirmPassword == ''){
-					alert(" ENTER YOUR PASSWORD");
+					alert("ENTER YOUR PASSWORD");
 					return;
 				}	
 				
@@ -74,6 +75,7 @@
 				// #idCheckOk가 <div> 클래스에 d-none이 없으면 중복확인 완료
 				if ($('#idCheckOk').hasClass('d-none')) {
 					alert("FINISH ID CHECKING");
+					return;
 				}
 				
 				// 서버에 요청
@@ -86,10 +88,10 @@
 				$.post(url, data)
 				.done(function(data) {
 					if (data.result == 'success'){
-						alert("welcome Marondalgram. sign in now")
+						alert("welcome Marondalgram! sign in now");
 						location.href = '/user/sign_in_view';
 					} else { // ajax 통신은 성공, 로직상 실패
-						alert("sign up has failed.")					
+						alert("sign up has failed.");			
 					}
 				}); // post ajax close
 				

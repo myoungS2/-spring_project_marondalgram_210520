@@ -3,6 +3,9 @@ package com.marondalgram.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.marondalgram.common.EncryptUtils;
 import com.marondalgram.user.bo.UserBO;
+import com.marondalgram.user.model.User;
 
 @RequestMapping("/user")
 @RestController
@@ -40,7 +44,12 @@ public class UserRestController {
 		return result;
 	}
 	
-	// insert DB
+	/**
+	 * 회원가입
+	 * @param loginId
+	 * @param password
+	 * @return
+	 */
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(
 			@RequestParam("loginId") String loginId,
@@ -57,9 +66,41 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		return result;
+		
+		
 	}
 
-	
+	@PostMapping("/sign_in")
+	public Map<String, Object> SignIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			HttpServletRequest request){
+		
+		// 파라미터로 받은 비밀번호를 해싱한다.
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		// select DB (id와 해싱 된 pw로)
+		User user = userBO.getUserByLoginIdAndPassword(loginId, encryptPassword);
+		
+		Map<String, Object> result = new HashMap<>();
+		// 일치하는 값 있으면 -> sign in success
+		if (user != null) {
+			result.put("result", "success");
+		// 세션 (로그인 상태 유지)
+			HttpSession session = request.getSession();
+		// 담고싶은 정보 담기
+			session.setAttribute("loginId", user.getLoginId());
+			
+		
+		} else {
+			// 일치하는 값 없으면 -> sign in fail
+			result.put("result", "error");
+		}
+		
+		
+		// 결과 리턴
+		return result;
+	}
 	
 	
 	
