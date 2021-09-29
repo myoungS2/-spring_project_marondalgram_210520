@@ -77,19 +77,19 @@
 				}
 				
 				// 서버에 요청
-				let url = $('#signUPForm').attr('action');
+				let url = $('#signUpForm').attr('action');
 				// alert(url);
-				let data = $('#signUPForm').serialize(); // serialize : 도메인객체(model)에 있는 필드-> String 구성하는 것..? (다른서버한테 필드에 있는 값을 보낼 때 사용함)
+				let data = $('#signUpForm').serialize(); // serialize : 도메인객체(model)에 있는 필드-> String 구성하는 것..? (다른서버한테 필드에 있는 값을 보낼 때 사용함)
 				console.log(data);		
 				// 폼 태그에 있는 데이터를 한번에 보낼 수 있게 구성한다. 그렇지 않으면 json으로 구성해야한다.
 				
 				$.post(url, data)
 				.done(function(data) {
 					if (data.result == 'success'){
-						alert("가입을 환영합니다!! 로그인 해주세요.")
+						alert("welcome Marondalgram. sign in now")
 						location.href = '/user/sign_in_view';
 					} else { // ajax 통신은 성공, 로직상 실패
-						alert("가입에 실패했습니다.")					
+						alert("sign up has failed.")					
 					}
 				}); // post ajax close
 				

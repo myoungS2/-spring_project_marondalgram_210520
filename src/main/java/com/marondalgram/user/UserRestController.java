@@ -50,15 +50,11 @@ public class UserRestController {
 		String encryptPassword = EncryptUtils.md5(password);
 		
 		// insert DB
-		int row = userBO.addUser(loginId, encryptPassword);
+		userBO.addUser(loginId, encryptPassword);
 		
 		// 응답값 생성 후 리턴
 		Map<String, Object> result = new HashMap<>();
-		if (row == 1) {
-			result.put("result", "success");
-		} else {
-			result.put("result", "입력 실패");
-		}
+		result.put("result", "success");
 		
 		return result;
 	}
