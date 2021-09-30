@@ -2,7 +2,10 @@
 
 /* a {display:none;} */
 
+/* user(sign in/ up) */
+
 #logo {color:#000000; font-weight:bold; font-size:30px;}
+
 #signup {color:#d0d0d0;}
 #idCheckHref {color:#d0d0d0;}
 
@@ -12,3 +15,14 @@ header {height: 100px;}
 
 .signin {height: 500px;}
 .signup {height: 500px;} 
+
+
+/* timeline */ 
+
+header #timelineHeader {height: 50px;}
+
+#timelineLogo {color:#000000; font-weight:bold; font-size:20px;}
+#signinHref {color:#d0d0d0;}
+#myprofile {color:#d0d0d0;}
+
+.postArea {width:800px;}
