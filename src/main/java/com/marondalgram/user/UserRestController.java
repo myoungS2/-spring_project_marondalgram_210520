@@ -90,6 +90,7 @@ public class UserRestController {
 			HttpSession session = request.getSession();
 		// 담고싶은 정보 담기
 			session.setAttribute("loginId", user.getLoginId());
+			session.setAttribute("userId", user.getId());
 			
 		
 		} else {
