@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,44 +22,7 @@
 			<jsp:include page="../include/gnb_timeline.jsp" />
 		</header>
 		<section class="postArea d-flex justify-content-center">
-			<%-- 새 게시물 작성공간--%>
-			<div class="newpostArea">
-				
-			</div>
-			<%-- 게시물 --%>
-			<div>
-				<%-- 사용자이름/ 삭제버튼 --%>
-				<div class="d-flex justify-content-between">
-					<div class="font-weight-bold">myoung.e</div>
-					<div>
-						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" type="button" alt="delete" width="20" height="20">
-					</div>
-				</div>
-				<%-- 게시물(사진) --%>
-				<div class="postImg"> <%-- 자체적인 사이즈 정해주기 --%>
-					<img src="https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_960_720.jpg" alt="postImg" width="600" height="600">
-				</div>
-				<%-- 좋아요버튼 눌렀을때->♥ 다시눌렀을때->♡ (토글)--%>
-				<div class="likeArea">
-					<img src="https://www.iconninja.com/files/527/809/128/heart-icon.png" class="d-none" alt="fullHeart" width="20" height="20">
-					<img src="https://www.iconninja.com/files/214/518/441/heart-icon.png" alt="emptyHeart" width="20" height="20">
-					
-				</div>
-				<%-- 좋아요수 카운트 --%>
-				<div class="likeCount">
-					<span><small>126 likes</small></span>
-				</div>
-				<%-- 게시물(내용) --%>
-				<div class="postContent">
-					<span class="font-weight-bold">myoung.e</span>
-					<span>java하기 딱 좋은 날씨네...</span>
-				</div>
-				<%-- 댓글달기 --%>
-				<div class="getComment">
-					<input type="text" id="commentInput" placeholder="post your comment here.">
-					<a type="button" herf="#" id="commentBtn">Post</a>
-				</div>
-			</div>
+			<jsp:include page="../${viewName}.jsp" />
 		</section>
 	</div>
 

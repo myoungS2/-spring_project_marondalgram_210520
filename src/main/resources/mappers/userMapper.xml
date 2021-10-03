@@ -30,7 +30,8 @@
  	</insert>
  	<select id="selectUserByLoginIdAndPassword" parameterType="Map" resultType="com.marondalgram.user.model.User">
  		SELECT 
- 			`loginId`
+ 			`id`
+ 			,`loginId`
 			,`password`
 			,`createdAt`
 			,`updatedAt`
