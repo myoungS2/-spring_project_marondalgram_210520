@@ -108,7 +108,7 @@
 		}); // file close
 		
 		// 새 게시물
-		$('#postCreateBtn').on('click', function(){
+		$('#postCreateBtn').on('click', function(e){
 			// 내용 가져오기
 			let content = $('#writeContentArea').val();
 			console.log(content); // 값 잘 가져와지는지 확인
@@ -142,7 +142,8 @@
 			// 객체에 데이터(내용) 넣기 
 			formData.append('content', content);
 			// 객체에 데이터(이미지파일) 넣기
-			formData.appent('file', $('#file')[0].files[0]);
+			formData.append('file', $('#file')[0].files[0]); // 오늘의 error 1 : append -> appent...ㅠㅠ
+			
 			
 			// ajax(request를 위한 설정)
 			$.ajax({
@@ -156,6 +157,7 @@
 				, success: function(data){
 					if (data.result == 'success'){
 						alert('Successfully posted');
+						location.reload(); // 새로고침
 					}
 				}
 				, error: function(e) {
