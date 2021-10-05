@@ -29,7 +29,10 @@ public class TimelineController {
 		// session 검증
 		 Integer userId = (Integer) session.getAttribute("userId");
 		
-		 List<Post> postList = postBO.getPostListByUserId(userId);
+		 // 포스트,좋아요, 댓글가 함께 담긴..!  -> List<ContentView> 객체를 새로 만들어 줌..! -> contentBO
+		 
+		 
+		 List<Post> postList = postBO.getPostListByUserId(userId); //  DB에 가까운 객체 -> Entity
 		 model.addAttribute("postList", postList);
 		 
 		// section부분 바꿔주기(상황에 따라)

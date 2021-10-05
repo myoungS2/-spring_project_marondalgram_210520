@@ -20,10 +20,10 @@ public class FileManagerService {
 	
 	// WAS에 url을 만들어내고, 그 url과 내컴퓨터에 있는 이미지파일을 맵핑!
 	// 1. 실제 이미지가 저장 될 경로
-	// clone
+	// 집 컴퓨터(clone_노트북)
 	public final static String FILE_UPLOAD_PATH = "D:\\웹개발(21-05-20)\\6_spring project\\quiz_clone_workspace\\images/";
 	// 학원 컴퓨터
-	// public final static String FILE_UPLOAD_PATH =
+	// public final static String FILE_UPLOAD_PATH = "D:\심미영_웹개발_210520\6_spring_project\quiz\marondalgram_workspace\images/"
 	
 	// 2. 파일을 받아서 String(url = 내컴퓨터 상 url) return
 	public String saveFile(String loginId, MultipartFile file) throws IOException {
