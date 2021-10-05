@@ -22,8 +22,8 @@ public class PostBO {
 	private FileManagerService fileManagerService;
 	
 	// select DB
-	public List<Post> getPostListByUserId(int userId){
-		return postDAO.selectPostListByUserId(userId);
+	public List<Post> getPostList(){
+		return postDAO.selectPostList();
 	}
 	
 	// insert DB

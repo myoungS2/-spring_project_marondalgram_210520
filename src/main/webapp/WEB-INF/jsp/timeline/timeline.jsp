@@ -33,9 +33,8 @@
 		<%-- 사용자이름/ 삭제버튼 --%>
 		<div class="d-flex justify-content-between">
 			<div class="font-weight-bold ml-3">${loginId}</div> <%-- session에서 가져오기 --%>
-			<div>
-				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png"
-					type="button" alt="delete"  class="mr-3" width="20" height="20">
+			<div> <%-- TODO: 게시글 작성자 = 로그인 된 사용자 일때만 나타나기 --%>
+				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" type="button" alt="delete"  class="mr-3 d-none" width="20" height="20">
 			</div>
 		</div>
 		
@@ -71,7 +70,6 @@
 			<input type="text" id="commentInput" class="w-100 border-0" placeholder="post your comment here."> 
 			<a type="button" herf="#" id="commentBtn" class="btn ml-3">Post</a>
 		</div>
-		
 		</c:forEach>
 	</div>
 	

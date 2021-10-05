@@ -11,7 +11,7 @@ import com.marondalgram.post.model.Post;
 public interface PostDAO {
 	
 	// select DB
-	public List<Post> selectPostListByUserId(int userId);
+	public List<Post> selectPostList();
 	
 	// insert DB
 	public int insertPost(

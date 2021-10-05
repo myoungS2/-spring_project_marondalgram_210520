@@ -21,4 +21,11 @@ public class UserController {
 		model.addAttribute("viewName", "user/sign_up");
 		return "template/layout_login";
 	}
+	
+	// profile view 연결
+	@RequestMapping("/profile_view")
+	public String profileView(Model model) {
+		model.addAttribute("viewName", "user/profile_view");
+		return "template/layout_profile";
+	}
 }

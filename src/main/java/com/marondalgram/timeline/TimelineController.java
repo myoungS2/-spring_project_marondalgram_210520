@@ -23,20 +23,21 @@ public class TimelineController {
 	
 	@RequestMapping("/timeline/list_view")
 	public String timelineListView(Model model, HttpServletRequest request) {
-		// 글 목록을 가져온다. (로그인 된 아이디가 쓴 글만 test1/0000 /userId=1)
-		 HttpSession session = request.getSession();
-		
-		// session 검증
-		 Integer userId = (Integer) session.getAttribute("userId");
-		
-		 // 포스트,좋아요, 댓글가 함께 담긴..!  -> List<ContentView> 객체를 새로 만들어 줌..! -> contentBO
-		 
-		 
-		 List<Post> postList = postBO.getPostListByUserId(userId); //  DB에 가까운 객체 -> Entity
+//		// 글 목록을 가져온다. (로그인 된 아이디가 쓴 글만 test1/0000 /userId=1)
+//		 HttpSession session = request.getSession();
+//		
+//		// session 검증
+//		 Integer userId = (Integer) session.getAttribute("userId");
+//		
+//		 // 포스트,좋아요, 댓글가 함께 담긴..!  -> List<ContentView> 객체를 새로 만들어 줌..! -> contentBO
+//		 
+//		 
+		 List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
 		 model.addAttribute("postList", postList);
 		 
 		// section부분 바꿔주기(상황에 따라)
 		 model.addAttribute("viewName", "timeline/timeline");
+		 
 		 return "template/layout_timeline";
 	}
 	
