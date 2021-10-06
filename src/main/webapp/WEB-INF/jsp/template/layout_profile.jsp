@@ -20,7 +20,7 @@
 		<header id="timelineHeader" class="d-flex justify-content-between">
 			<jsp:include page="../include/gnb_timeline.jsp" />
 		</header>
-		<section>
+		<section id="profileSection">
 			<jsp:include page="../user/profile_view.jsp" />
 		</section>
 	</div>	

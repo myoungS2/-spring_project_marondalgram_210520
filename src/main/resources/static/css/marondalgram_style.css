@@ -25,3 +25,6 @@ header #timelineHeader {height: 50px;}
 #signinHref {color:#d0d0d0;}
 #myprofile {color:#d0d0d0;}
 
+/* profile */
+
+#profileSection {width: 600px;}

@@ -10,16 +10,16 @@ import com.marondalgram.timeline.model.ContentView;
 
 @Service
 public class ContentBO {
-	@Autowired
-	private PostBO postBO;
-	
-	@Autowired
-	private CommentBO commentBO;
-	
-	
-	public List<ContentView> generateContentViewList() { // 가공 된 객체는 get이 아닌..generate
-		
-	}
+//	@Autowired
+//	private PostBO postBO;
+//	
+//	@Autowired
+//	private CommentBO commentBO;
+//	
+//	
+//	public List<ContentView> generateContentViewList() { // 가공 된 객체는 get이 아닌..generate
+//		
+//	}
 	
 
 }
