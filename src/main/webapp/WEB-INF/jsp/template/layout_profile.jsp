@@ -20,8 +20,8 @@
 		<header id="timelineHeader" class="d-flex justify-content-between">
 			<jsp:include page="../include/gnb_timeline.jsp" />
 		</header>
-		<section id="profileSection">
-			<jsp:include page="../user/profile_view.jsp" />
+		<section id="postImg" class="d-flex justify-content-center">
+			<jsp:include page="../${viewName}.jsp" />
 		</section>
 	</div>	
 </body>
