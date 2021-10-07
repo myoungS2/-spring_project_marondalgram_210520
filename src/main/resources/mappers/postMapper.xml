@@ -35,4 +35,29 @@
 			, NOW()
 		)	
 	</insert>
+	
+	<select id="selectPost" resultType="com.marondalgram.post.model.Post">
+			SELECT
+				`id`
+				, `userId`
+				, `imgUrl`
+				, `content`
+				, `createdAt`
+				, `updatedAt`
+			FROM
+				`post`
+			WHERE
+			 	`id` = #{id}	
+			ORDER BY 
+				`createdAt` DESC <!-- 모든 사용자의 글 가져와서, 제일 최신 글부터 보여주기 -->
+	</select>
+	
+	
+	<delete id="deletePost" parameterType="int">
+		DELETE
+		FROM
+			`post`
+		WHERE
+			`id` =#{id}	
+	</delete>
 </mapper>

@@ -22,16 +22,10 @@
 
 <%-- 프로필 편집 버튼 --%>
 <div>
-	<button type="button" id="profileBtn" class="btn btn-secondary w-100">프로필 편집</button>
+	<a href="/user/profile_update" type="button" id="profileBtn" class="btn btn-secondary w-100">프로필 편집</a>
 </div>
 
 <%-- 사용자가 올린 게시물(사진만) --%>
 <div>
-	<table>
-		<tr>
-			<th>1</th>
-			<th>2</th>
-			<th>3</th>
-		</tr>
-	</table>
+	
 </div>

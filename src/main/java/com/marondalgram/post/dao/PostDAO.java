@@ -18,4 +18,10 @@ public interface PostDAO {
 			@Param("userId") int userId,
 			@Param("content") String content,
 			@Param("imgUrl") String imgUrl);
+	
+	// select DB
+	public Post selectPost(int id);
+	
+	// delete DB
+	public void deletePost(int id);
 }

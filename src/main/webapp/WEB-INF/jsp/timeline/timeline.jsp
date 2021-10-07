@@ -29,18 +29,21 @@
 	<%-- 게시물 --%>
 	<div class="border rounded p-2">
 		<%-- 반복문으로 post가져오기 --%>
-		<c:forEach var="post" items="${postList}">
+		<c:forEach var="content" items="${conetentView}">
 		<%-- 사용자이름/ 삭제버튼 --%>
 		<div class="d-flex justify-content-between">
 			<div class="font-weight-bold ml-3">${loginId}</div> <%-- session에서 가져오기 --%>
+			
 			<div> <%-- TODO: 게시글 작성자 = 로그인 된 사용자 일때만 나타나기 --%>
-				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" type="button" alt="delete"  class="mr-3 d-none" width="20" height="20">
+				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png"
+				data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}" class="more-btn" type="button" alt="delete"  class="btn mr-3 d-none" width="20" height="20">
+				<%-- post id 잘 가져와지는지 <span>${post.id}</span> --%>
 			</div>
 		</div>
 		
 		<%-- 게시물(사진) --%>
 		<div class="postImg mt-3 ml-1" width="600" height="600">
-			<img src="${post.imgUrl}" alt="postImg" width="600" height="600">
+			<img src="${content.post.imgUrl}" alt="postImg" width="600" height="600">
 		</div>
 		
 		<%-- 좋아요버튼 눌렀을때->♥ 다시눌렀을때->♡ (토글)--%>
@@ -75,8 +78,21 @@
 	
 </div>
 
+<!-- Button trigger modal -->
+
+<div class="modal fade" id="moreModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     	<a href="#" class="deletePost">Delete Post</a>
+    </div>
+  </div>
+</div>
+
+
+
 <script>
 	$(document).ready(function() {
+		
 		// 파일 업로드 이미지 버튼 클릭 -> 파일 선택 창이 뜸
 		$('#fileUploadBtn').on('click', function(e) {
 			e.preventDefault(); // 제일 위로 올라가는 동작 중지
@@ -166,6 +182,46 @@
 			
 			
 		}); // postCreateBtn close
+		
+		// 삭제(...) 버튼 클릭
+		$('.more-btn').on('click',function(e){
+			e.preventDefault(e);
+			// alert('more btn click');
+			
+			// 어떤 post가 (지금..!)클릭되었는지에 대한 정보 必 -> postId가져오기
+			let postId = $(this).data('post-id');
+			// alert(postId);
+			
+			// modal에 postId를 넣어준다.
+			$('#moreModal').data('post-id', postId);
+			
+			
+			// 모달안에 있는 삭제하기 클릭 (누구 밑에 누구)
+			$('#moreModal .deletePost').on('click', function(e) {
+				e.preventDefault(e); 
+				
+				let postId = $('#moreModal').data('post-id');
+				// alert(postId);
+				
+				// 삭제하기 action -> 서버한테 글 삭제 요청 (ajax)
+				$.ajax({
+					type: 'delete'
+					, url: '/post/delete'
+					, data: {'postId':postId}
+					, success: function(data) {
+						if(data.result == 'success'){
+							alert("Post has deleted.");
+							location.reload();
+						}
+					}	
+					, error: function(e){
+						alert("Delete post has failed.");
+					}	
+				}); // ajax close
+				
+			});
+			
+		}); // deletePostBtn close
 		
 		
 	}); // document close

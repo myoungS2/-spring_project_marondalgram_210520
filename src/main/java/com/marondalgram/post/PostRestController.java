@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,13 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
+	/**
+	 * Create Post
+	 * @param content
+	 * @param file
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/create")
 	public Map<String, Object> create(
 			@RequestParam("content") String content,
@@ -46,7 +54,24 @@ public class PostRestController {
 		// 결과값 response
 		return result;
 		
+	}
 	
-	
+	/**
+	 * Delete Post
+	 * @param postId
+	 * @return
+	 */
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("postId") int postId){
+		
+		// delete DB
+		postBO.deletePost(postId);//
+		
+		// 결과 return
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		return result;
 	}
 }

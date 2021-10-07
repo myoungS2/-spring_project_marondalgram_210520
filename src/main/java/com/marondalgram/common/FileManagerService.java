@@ -21,9 +21,9 @@ public class FileManagerService {
 	// WAS에 url을 만들어내고, 그 url과 내컴퓨터에 있는 이미지파일을 맵핑!
 	// 1. 실제 이미지가 저장 될 경로
 	// 집 컴퓨터(clone_노트북)
-	public final static String FILE_UPLOAD_PATH = "D:\\웹개발(21-05-20)\\6_spring project\\quiz_clone_workspace\\images/";
+	// public final static String FILE_UPLOAD_PATH = "D:\\웹개발(21-05-20)\\6_spring project\\quiz_clone_workspace\\images/";
 	// 학원 컴퓨터
-	// public final static String FILE_UPLOAD_PATH = "D:\심미영_웹개발_210520\6_spring_project\quiz\marondalgram_workspace\images/"
+	public final static String FILE_UPLOAD_PATH = "D:\\심미영_웹개발_210520\\6_spring_project\\quiz\\marondalgram_workspace\\images/";
 	
 	// 2. 파일을 받아서 String(url = 내컴퓨터 상 url) return
 	public String saveFile(String loginId, MultipartFile file) throws IOException {
@@ -51,6 +51,21 @@ public class FileManagerService {
 		
 		// 6. 이미지 URL path를 리턴한다. -> 이것을 주소창에 치면 이미지가 나와야함..!
 		return "/images/" + directoryName + file.getOriginalFilename();  
+	}
+	
+	public void deleteFile(String imgUrl) throws IOException {
+		Path path = Paths.get(FILE_UPLOAD_PATH + imgUrl.replace("/images/",""));
+		if (Files.exists(path)) {
+			// 파일이 존재하면 삭제한다.
+			Files.delete(path);
+		}
+		
+		// 디렉토리 삭제
+		path = path.getParent(); 
+		if (Files.exists(path)) {
+			Files.delete(path);
+		}
+		
 	}
 	
 }

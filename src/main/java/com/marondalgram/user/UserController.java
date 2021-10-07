@@ -28,4 +28,11 @@ public class UserController {
 		model.addAttribute("viewName", "user/profile_view");
 		return "template/layout_profile";
 	}
+	
+	// profile update view 연결
+	@RequestMapping("/profile_update")
+	public String profileUpdate(Model model) {
+		model.addAttribute("viewName", "user/profile_view");
+		return "template/layout_profile";
+	}
 }
