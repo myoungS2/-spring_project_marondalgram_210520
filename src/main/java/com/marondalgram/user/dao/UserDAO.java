@@ -19,4 +19,11 @@ public interface UserDAO {
 	public User selectUserByLoginIdAndPassword(
 			@Param("loginId") String loginId, 
 			@Param("password") String password);
+	
+	//update DB
+	public void updateUserByUserId(
+			@Param("id") int id,
+			@Param("name") String name, 
+			@Param("website") String website, 
+			@Param("introduce") String introduce);
 }

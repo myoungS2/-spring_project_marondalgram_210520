@@ -29,30 +29,38 @@
 	<%-- 게시물 --%>
 	<div class="border rounded p-2">
 		<%-- 반복문으로 post가져오기 --%>
-		<c:forEach var="post" items="${postList}">
+		<c:forEach var="content" items="${contentViewList}">
 		<%-- 사용자이름/ 삭제버튼 --%>
 		<div class="d-flex justify-content-between">
 			<div class="font-weight-bold ml-3">${loginId}</div> <%-- session에서 가져오기 --%>
 			
 			<div> <%-- TODO: 게시글 작성자 = 로그인 된 사용자 일때만 나타나기 --%>
 				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png"
-				data-toggle="modal" data-target="#moreModal" data-post-id="${post.id}" class="more-btn" type="button" alt="delete"  class="btn mr-3 d-none" width="20" height="20">
+				data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}" class="more-btn" type="button" alt="delete"  class="btn mr-3 d-none" width="20" height="20">
 				<%-- post id 잘 가져와지는지 <span>${post.id}</span> --%>
 			</div>
 		</div>
 		
 		<%-- 게시물(사진) --%>
 		<div class="postImg mt-3 ml-1" width="600" height="600">
-			<img src="${post.imgUrl}" alt="postImg" width="600" height="600">
+			<img src="${content.post.imgUrl}" alt="postImg" width="600" height="600">
 		</div>
 		
 		<%-- 좋아요버튼 눌렀을때->♥ 다시눌렀을때->♡ (토글)--%>
 		<div class="likeArea mt-3 ml-3">
-			<img src="https://www.iconninja.com/files/527/809/128/heart-icon.png"
-				class="d-none" alt="fullHeart" width="20" height="20"> 
-			<img
-				src="https://www.iconninja.com/files/214/518/441/heart-icon.png"
-				alt="emptyHeart" width="20" height="20">
+			<c:if test="${content.likeYn eq true}">
+				<a href="#" class="like-btn" data-post-id="${content.post.id}">
+					<img src="https://www.iconninja.com/files/527/809/128/heart-icon.png"
+					class="d-none" alt="fullHeart" width="20" height="20"> 
+				</a>	
+			</c:if>	
+			<c:if test="${content.likeYn eq false}">
+				<a href="#" class="like-btn" data-post-id="${content.post.id}">
+					<img
+					src="https://www.iconninja.com/files/214/518/441/heart-icon.png"
+					alt="emptyHeart" width="20" height="20">
+				</a>
+			</c:if>		
 		</div>
 		
 		<%-- 좋아요수 카운트 --%>
@@ -65,13 +73,18 @@
 			<%-- 사용자 id --%>
 			<span class="font-weight-bold">${loginId}</span> 
 			<%-- post content --%>
-			<span>${post.content}</span>
+			<span>${content.post.content}</span>
+		</div>
+		
+		<%-- 댓글(이미쓰여진) --%>
+		<div>
+			<span>${content.}</span>
 		</div>
 		
 		<%-- 댓글달기 --%>
 		<div class="getComment ml-3 d-flex justify-content-between">
-			<input type="text" id="commentInput" class="w-100 border-0" placeholder="post your comment here."> 
-			<a type="button" herf="#" id="commentBtn" class="btn ml-3">Post</a>
+			<input type="text" id="commentInput${content.post.id}" class="w-100 border-0" placeholder="post your comment here."> <%-- 어떤글에 어떤댓글창에 댓글을 달았는지..! --%>
+			<a type="button" herf="#" id="commentBtn" data-post-id="${content.post.id}" class="btn ml-3">Post</a> <%-- 어떤게시글에 어떤게시버튼을 눌렀는지..! --%>
 		</div>
 		</c:forEach>
 	</div>
@@ -185,7 +198,7 @@
 		
 		// 삭제(...) 버튼 클릭
 		$('.more-btn').on('click',function(e){
-			e.preventDefault(e);
+			e.preventDefault();
 			// alert('more btn click');
 			
 			// 어떤 post가 (지금..!)클릭되었는지에 대한 정보 必 -> postId가져오기
@@ -198,7 +211,7 @@
 			
 			// 모달안에 있는 삭제하기 클릭 (누구 밑에 누구)
 			$('#moreModal .deletePost').on('click', function(e) {
-				e.preventDefault(e); 
+				e.preventDefault(); 
 				
 				let postId = $('#moreModal').data('post-id');
 				// alert(postId);
@@ -222,6 +235,60 @@
 			});
 			
 		}); // deletePostBtn close
+		
+		// 좋아요 클릭
+		$('.like-btn').on('click', function(e){
+			e.preventDefault();
+			
+			// 어떤 글에 좋아요를 눌렀는지..! -> $('.like-btn')으로 이벤트를 잡게되면, 첫번째 것에만 계속 동작하게 됨.
+			let postId = $(this).data('post-id');
+			
+			// ajax로 요청
+			$.ajax({
+				type: 'post'
+				, url: '/like/' + postId // postId넘겨주기
+				, success: function(data){
+					if (data.result = 'success'){
+						location.reload();
+					}	
+				}
+				, error: function(e) {
+					alert("Like post has failed.");
+				}
+			})
+			
+		}); // like-btn close
+		
+		// 댓글 쓰기
+		$('#commentBtn').on('click', function(e){
+			// 어떤 글에 댓글쓰기 버튼을 눌렀는지 -> 게시글 번호 얻어내기
+			let postId = $(this).data('post-id');
+			
+			// 댓글 내용 commentInput${content.post.id}
+			let commentContent = $('#commentInput' + postId).val();
+			
+			if (commentContent == ''){
+				alert("Comment is empty.");
+				return;
+			}
+			
+			// ajax로 요청
+			$.ajax({
+				type: 'post'
+				, url: 'comment/create'
+				, success: function(data){
+					if (data.result = 'success'){
+						alert("Comment postded.");
+						location.reload();
+					}
+				}	
+				, error: function(e) {
+					alert("Post comment has failed." + e);
+				}
+				
+			}); // ajax close
+			
+		}); // commentBtn close
 		
 		
 	}); // document close

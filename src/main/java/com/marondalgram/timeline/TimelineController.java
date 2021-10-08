@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.marondalgram.post.bo.PostBO;
 import com.marondalgram.post.model.Post;
 import com.marondalgram.timeline.bo.ContentBO;
+import com.marondalgram.timeline.model.ContentView;
 
 @Controller
 public class TimelineController {
@@ -33,13 +34,13 @@ public class TimelineController {
 		 Integer userId = (Integer) session.getAttribute("userId");
 //		
 //		 // 포스트,좋아요, 댓글가 함께 담긴..!  -> List<ContentView> 객체를 새로 만들어 줌..! -> contentBO
-//		 
-//		 
-		 List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
-		 model.addAttribute("postList", postList);
-//		 List<ContentView> contentView = contentBO.generateContentViewList(); 
+
 		 
-//		 model.addAttribute("contentView", contentView);
+//		 List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
+//		 model.addAttribute("postList", postList);
+		 List<ContentView> contentViewList = contentBO.generateContentViewList(); 
+		 
+		 model.addAttribute("contentViewList", contentViewList);
 		 
 		// section부분 바꿔주기(상황에 따라)
 		 model.addAttribute("viewName", "timeline/timeline");

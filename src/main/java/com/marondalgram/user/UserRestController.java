@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,9 @@ import com.marondalgram.user.model.User;
 @RequestMapping("/user")
 @RestController
 public class UserRestController {
+	
+	// logger
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	// bo 연결
 	@Autowired
@@ -69,7 +74,14 @@ public class UserRestController {
 		
 		
 	}
-
+	
+	/**
+	 * 로그인
+	 * @param loginId
+	 * @param password
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/sign_in")
 	public Map<String, Object> SignIn(
 			@RequestParam("loginId") String loginId,
@@ -103,7 +115,31 @@ public class UserRestController {
 		return result;
 	}
 	
-	
+	// 사용자 정보 수정
+	@PostMapping("/profile_update")
+	public Map<String, Object> profileUpdate(
+			@RequestParam("userId") int userId,
+			@RequestParam(value="name", required=false) String name,
+			@RequestParam(value="website", required=false) String website,
+			@RequestParam(value="introduce", required=false) String introduce,
+			HttpServletRequest request){
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		HttpSession session = request.getSession();
+		String loginId = (String) session.getAttribute("loginId");
+		if (loginId == null) {
+			result.put("result", "error");
+			logger.error("[update user] No loginId to update info.");
+		}
+		
+		// updateBO
+		userBO.updateUserByUserId(userId, name, website, introduce);
+		result.put("result", "success");
+		
+		// 결과 리턴
+		return result;
+	}
 	
 }	
 	

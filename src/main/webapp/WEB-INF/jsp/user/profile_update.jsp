@@ -23,3 +23,14 @@
 		<a href="#" type="button" id="signOutBtn" class="btn btn-secondary w-100 mb-3">sign out</a>
 	</div>
 </div>	
+
+<script>
+	$(document).ready(function() {
+		// pfUpdateBtn 눌렀을 때
+		
+		
+		
+		
+	}); //  document close
+
+</script>

@@ -66,7 +66,15 @@ public class PostRestController {
 			@RequestParam("postId") int postId){
 		
 		// delete DB
+		// 2. postBO를 불러서 postId를 가져와서 삭제..! => 좋은 구조 (BO에서 처리를 하게 하는것!)
 		postBO.deletePost(postId);//
+		
+		// 글, 사진, 댓글, 좋아요 -> 모두 삭제해야함..! 
+		// 방법 1. 컨트롤러가 각각의 BO를 불러서..!
+		
+//		comment -> postId로 삭제
+//		like -> postId로 삭제
+//		그림 ->
 		
 		// 결과 return
 		Map<String, Object> result = new HashMap<>();

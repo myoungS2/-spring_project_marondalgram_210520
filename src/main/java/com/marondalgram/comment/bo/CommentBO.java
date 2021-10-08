@@ -14,9 +14,15 @@ public class CommentBO {
 	@Autowired
 	private CommentDAO commentDAO;
 	
+	// insert DB
+	public List<Comment> addCommentList();
+		
+	
+	
 	// select DB
 	public List<Comment> getCommentList(){
 		return commentDAO.selectCommentList();
 	}
+	
 	
 }

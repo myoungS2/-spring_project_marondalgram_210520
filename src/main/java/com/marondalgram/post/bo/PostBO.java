@@ -60,6 +60,10 @@ public class PostBO {
 		// delete post
 		postDAO.deletePost(postId);
 		
+		// 댓글도 삭제
+		// 좋아요도 삭제
+		
+		// 그림도 삭제
 		String imgUrl = post.getImgUrl();
 		if (imgUrl != null) {
 			try {
@@ -68,6 +72,10 @@ public class PostBO {
 				logger.error("[delete post] 그림 삭제 실패 postId: {}, path: {}", postId, imgUrl); // 그림 삭제를 실패하더라도, post는 지울 것..! (return x)
 			}
 		}
+		
+		
+		
+		
 	}
 
 	

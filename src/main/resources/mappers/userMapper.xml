@@ -41,4 +41,15 @@
 			`loginId` = #{loginId}
 			AND `password`	= #{password}
  	</select>
+ 	<update id="updateUserByUserId" parameterType="Map">
+ 		UPDATE `user`
+		SET 		
+			`name` = #{name}
+			, `website` = #{website}
+			, `introduce` = #{introduce}
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+ 	
+ 	</update>
  </mapper>
