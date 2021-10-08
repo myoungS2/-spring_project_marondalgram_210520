@@ -57,4 +57,13 @@ public class UserController {
 		model.addAttribute("viewName", "user/profile_update");
 		return "template/layout_profile";
 	}
+	
+	@RequestMapping("/sign_out")
+	public String signOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userId");
+		
+		return "redirect:/user/sign_in_view";
+	}
 }

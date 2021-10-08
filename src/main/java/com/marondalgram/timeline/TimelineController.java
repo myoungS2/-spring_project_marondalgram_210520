@@ -38,8 +38,8 @@ public class TimelineController {
 		 
 //		 List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
 //		 model.addAttribute("postList", postList);
-		 List<ContentView> contentViewList = contentBO.generateContentViewList(); 
-		 
+		 List<ContentView> contentViewList = contentBO.generateContentViewList(userId); 
+		 																	// 로그인 된 사용자의 좋아요 상태를 표시하기 위해 userId 파라미터를 추가한다. 
 		 model.addAttribute("contentViewList", contentViewList);
 		 
 		// section부분 바꿔주기(상황에 따라)

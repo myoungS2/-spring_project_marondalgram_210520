@@ -41,7 +41,19 @@
 			`loginId` = #{loginId}
 			AND `password`	= #{password}
  	</select>
- 	<update id="updateUserByUserId" parameterType="Map">
+ 	<select id="selectUser" parameterType="int" resultType="com.marondalgram.user.model.User">
+ 		SELECT 
+ 			`id`
+ 			,`loginId`
+			,`password`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`user`	
+		WHERE
+			`id` = #{id}
+ 	</select>
+ 	<update id="updateUser" parameterType="Map">
  		UPDATE `user`
 		SET 		
 			`name` = #{name}
@@ -50,6 +62,5 @@
 			, `updatedAt` = NOW()
 		WHERE
 			`id` = #{id}
- 	
  	</update>
  </mapper>

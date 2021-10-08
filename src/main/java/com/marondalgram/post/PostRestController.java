@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +16,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.marondalgram.like.bo.LikeBO;
 import com.marondalgram.post.bo.PostBO;
 
 @RequestMapping("/post")
 @RestController
 public class PostRestController {
-	// bo 연결
+	
+	// logger
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	// postBO 연결
 	@Autowired
 	private PostBO postBO;
+	
+	// likeBO 연결
+	@Autowired
+	private LikeBO likeBO;
 	
 	/**
 	 * Create Post
@@ -80,6 +91,25 @@ public class PostRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
+		return result;
+	}
+	
+	@RequestMapping("/like")
+	public Map<String, Object> like(
+			@RequestParam("postId") int postId,
+			HttpServletRequest request){
+		
+		Map<String, Object> result = new HashMap<>();
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			result.put("result", "error");
+			logger.error("[like] No userId");
+			return result;
+		}
+		
+		likeBO.LikeYn(postId, userId);
+		result.put("result", "success");
 		return result;
 	}
 }

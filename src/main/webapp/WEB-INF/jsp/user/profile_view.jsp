@@ -6,14 +6,14 @@
 <div class="w-50"> 
 	<%-- 끝으로 분리를 위한 div --%>   
 	<div class="d-flex justify-content-between">    
-	
+		
 		<%-- 사용자 정보(loginId, name, website, introduce) --%>
+		
 		<div>
 			<div class="font-weight-bold ml-3">${loginId}</div>
-		
 			<div class="font-weight-bold ml-3">${name}</div>
 			<div>
-				<a href="${website}"></a>
+				<a href="${user.website}">${website}</a>
 			</div>
 			<div>${introduce}</div>
 		</div>
@@ -37,6 +37,5 @@
 					<img src="${post.imgUrl}" class="m-1" alt="postImg" width="170" height="170">
 				</c:forEach>
 			</div>
-			
 	</div>
 </div>	

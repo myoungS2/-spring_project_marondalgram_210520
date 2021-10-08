@@ -46,8 +46,18 @@ public class UserBO {
 		return userDAO.selectUserByLoginIdAndPassword(loginId, password);
 	}
 	
-	// update DB
-	public void updateUserByUserId(int userId,String name, String website, String introduce) {
-		
+	private User getUser(int userId) {
+		return userDAO.selectUser(userId);
 	}
+	
+	// update DB
+	public void updateUser(int userId,String name, String website, String introduce) {
+		User user = getUser(userId);
+		if (user == null) {
+			logger.error("[update user] No userId");
+		}
+		userDAO.updateUser(userId, name, website, introduce);
+	}
+
+	
 }

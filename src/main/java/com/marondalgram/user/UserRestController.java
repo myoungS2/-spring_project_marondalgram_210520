@@ -118,7 +118,6 @@ public class UserRestController {
 	// 사용자 정보 수정
 	@PostMapping("/profile_update")
 	public Map<String, Object> profileUpdate(
-			@RequestParam("userId") int userId,
 			@RequestParam(value="name", required=false) String name,
 			@RequestParam(value="website", required=false) String website,
 			@RequestParam(value="introduce", required=false) String introduce,
@@ -128,13 +127,16 @@ public class UserRestController {
 		
 		HttpSession session = request.getSession();
 		String loginId = (String) session.getAttribute("loginId");
-		if (loginId == null) {
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (loginId == null && userId == null) {
 			result.put("result", "error");
 			logger.error("[update user] No loginId to update info.");
 		}
 		
 		// updateBO
-		userBO.updateUserByUserId(userId, name, website, introduce);
+		userBO.updateUser(userId, name, website, introduce);
+		
+		
 		result.put("result", "success");
 		
 		// 결과 리턴

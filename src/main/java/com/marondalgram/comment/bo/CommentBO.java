@@ -15,14 +15,17 @@ public class CommentBO {
 	private CommentDAO commentDAO;
 	
 	// insert DB
-	public List<Comment> addCommentList();
-		
-	
-	
-	// select DB
-	public List<Comment> getCommentList(){
-		return commentDAO.selectCommentList();
+	public void createComment(int postId, int userId, String comment){
+		commentDAO.insertComment(postId, userId, comment);
 	}
 	
+	// select DB
+	public List<Comment> getCommentList(int postId){
+		return commentDAO.selectCommentList(postId);
+	}
 	
+	// delete DB
+	public void deleteComment(int commentId) {
+		commentDAO.deleteComment(commentId);
+	}
 }

@@ -4,13 +4,44 @@
  
  
  <mapper namespace="com.marondalgram.comment.dao.CommentDAO">
+ 	<insert id="insertComment" parameterType="map">
+ 		INSERT INTO `comment`
+ 		(
+ 			`postId`
+ 			, `userId`
+ 			, `comment`
+ 			, `createdAt`
+	 		, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{postId}
+ 			, #{userId}
+ 			, #{comment}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
  	<select id="selectCommentList" resultType="com.marondalgram.comment.model.Comment">
  		SELECT
- 			`postId`
+ 			`id`
+ 			,`postId`
 			,`userId`
+			,`comment`
 			,`createdAt`
+			,`updatedAt`
 		FROM
 			`comment`
+		WHERE
+			`postId` = ${postId}	
  	</select>
- 
+ 	
+ 	<delete id="deleteComment" parameterType="int">
+ 		DELETE
+		FROM
+			`comment`
+		WHERE
+			`id` = #{id}
+ 	</delete>
  </mapper>

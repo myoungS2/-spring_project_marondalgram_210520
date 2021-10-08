@@ -20,8 +20,11 @@ public interface UserDAO {
 			@Param("loginId") String loginId, 
 			@Param("password") String password);
 	
+	// select DB
+	public User selectUser(int id);
+	
 	//update DB
-	public void updateUserByUserId(
+	public void updateUser(
 			@Param("id") int id,
 			@Param("name") String name, 
 			@Param("website") String website, 
