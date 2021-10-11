@@ -30,7 +30,7 @@ public class UserRestController {
 	private UserBO userBO;
 	
 	/**
-	 * 아이디 중복확인 체크
+	 * Id Check
 	 * @param loginId
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class UserRestController {
 	}
 	
 	/**
-	 * 회원가입
+	 * Sign Up
 	 * @param loginId
 	 * @param password
 	 * @return
@@ -76,7 +76,7 @@ public class UserRestController {
 	}
 	
 	/**
-	 * 로그인
+	 * Sign In
 	 * @param loginId
 	 * @param password
 	 * @param request
@@ -115,7 +115,14 @@ public class UserRestController {
 		return result;
 	}
 	
-	// 사용자 정보 수정
+	/** 
+	 * Update User
+	 * @param name
+	 * @param website
+	 * @param introduce
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/profile_update")
 	public Map<String, Object> profileUpdate(
 			@RequestParam(value="name", required=false) String name,

@@ -1,5 +1,7 @@
 package com.marondalgram.user.bo;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +61,9 @@ public class UserBO {
 		userDAO.updateUser(userId, name, website, introduce);
 	}
 
+	// select DB
+	public User getUserInfo(int userId){
+		return userDAO.selectUserInfo(userId);
+	}
 	
 }

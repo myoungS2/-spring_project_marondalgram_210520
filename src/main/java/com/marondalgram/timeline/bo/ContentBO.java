@@ -60,6 +60,11 @@ public class ContentBO {
 		
 		return contentViewList;
 	}
+
+	public int userId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

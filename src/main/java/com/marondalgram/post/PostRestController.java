@@ -94,6 +94,12 @@ public class PostRestController {
 		return result;
 	}
 	
+	/**
+	 * Like
+	 * @param postId
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/like")
 	public Map<String, Object> like(
 			@RequestParam("postId") int postId,

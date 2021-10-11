@@ -12,14 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.marondalgram.post.bo.PostBO;
 import com.marondalgram.post.model.Post;
+import com.marondalgram.timeline.bo.ContentBO;
+import com.marondalgram.timeline.model.ContentView;
+import com.marondalgram.user.bo.UserBO;
+import com.marondalgram.user.model.User;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	
+	// user BO 연결
+	@Autowired
+	private UserBO userBO;
+	
 	// post BO 연결
 	@Autowired
 	private PostBO postBO;
+	
+	// content BO 연결
+	@Autowired
+	private ContentBO contentBO;
 	
 	// sign in view 연결
 	@RequestMapping("/sign_in_view")
@@ -42,10 +54,19 @@ public class UserController {
 		 HttpSession session = request.getSession();
 	
 		 // session 검증
-		 Integer userId = (Integer) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		
-		List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
-		model.addAttribute("postList", postList);
+		User userInfo = userBO.getUserInfo(userId);
+  		model.addAttribute("userInfo", userInfo);
+		
+		if (userId == userInfo.getId()) {
+			List<ContentView> contentViewList = contentBO.generateContentViewList(userId); 
+			model.addAttribute("contentViewList", contentViewList);
+		}
+//		List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
+//		model.addAttribute("postList", postList);
+		
+		
 		
 		model.addAttribute("viewName", "user/profile_view");
 		return "template/layout_profile";
@@ -58,6 +79,11 @@ public class UserController {
 		return "template/layout_profile";
 	}
 	
+	/**
+	 * Sign Out
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/sign_out")
 	public String signOut(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -66,4 +92,6 @@ public class UserController {
 		
 		return "redirect:/user/sign_in_view";
 	}
+	
+
 }

@@ -14,6 +14,7 @@ import com.marondalgram.post.bo.PostBO;
 import com.marondalgram.post.model.Post;
 import com.marondalgram.timeline.bo.ContentBO;
 import com.marondalgram.timeline.model.ContentView;
+import com.marondalgram.user.bo.UserBO;
 
 @Controller
 public class TimelineController {
@@ -24,6 +25,8 @@ public class TimelineController {
 	@Autowired
 	private ContentBO contentBO;
 	
+	@Autowired
+	private UserBO userBO;
 	
 	@RequestMapping("/timeline/list_view")
 	public String timelineListView(Model model, HttpServletRequest request) {

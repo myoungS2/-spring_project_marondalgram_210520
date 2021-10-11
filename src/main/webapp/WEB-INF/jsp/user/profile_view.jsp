@@ -9,19 +9,19 @@
 		
 		<%-- 사용자 정보(loginId, name, website, introduce) --%>
 		
-		<div>
-			<div class="font-weight-bold ml-3">${loginId}</div>
-			<div class="font-weight-bold ml-3">${name}</div>
 			<div>
-				<a href="${user.website}">${website}</a>
+				<div class="font-weight-bold ml-3">${userInfo.loginId}</div>
+				<div class="font-weight-bold ml-3">${userInfo.name}</div>
+				<div class="ml-3">
+					<a href="${userInfo.website}">${userInfo.website}</a>
+				</div>
+				<div class="ml-3">${userInfo.introduce}</div>
 			</div>
-			<div>${introduce}</div>
-		</div>
 		
 		<%-- 게시물 수 (count) --%>
 		<div>
-			<div class="font-weight-bold">647</div>
-			<span><small>게시물</small></span>
+			<!-- <div class="font-weight-bold">647</div>
+			<span><small>게시물</small></span> -->
 		</div>
 	</div>	
 	
@@ -33,9 +33,11 @@
 	<%-- 사용자가 올린 게시물(사진만) --%>
 	<div class="d-flex felx-wrap">
 			<div class="postImg w-100" width="170" height="170">
-				<c:forEach var="post" items="${postList}">
-					<img src="${post.imgUrl}" class="m-1" alt="postImg" width="170" height="170">
+			<c:if test="${userId eq userInfo.id}">
+				<c:forEach var="content" items="${contentViewList}">
+					<img src="${content.post.imgUrl}" class="m-1" alt="postImg" width="170" height="170">
 				</c:forEach>
+			</c:if>	
 			</div>
 	</div>
 </div>	

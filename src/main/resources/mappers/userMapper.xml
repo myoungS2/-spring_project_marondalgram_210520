@@ -46,6 +46,9 @@
  			`id`
  			,`loginId`
 			,`password`
+			, `name`
+			, `website`
+			, `introduce`
 			,`createdAt`
 			,`updatedAt`
 		FROM 
@@ -63,4 +66,19 @@
 		WHERE
 			`id` = #{id}
  	</update>
+ 	<select id="selectUserInfo" parameterType="int" resultType="com.marondalgram.user.model.User">
+ 		SELECT 
+ 			`id`
+ 			,`loginId`
+			,`password`
+			, `name`
+			, `website`
+			, `introduce`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`user`
+		WHERE
+			`id` = #{id}		
+ 	</select>
  </mapper>

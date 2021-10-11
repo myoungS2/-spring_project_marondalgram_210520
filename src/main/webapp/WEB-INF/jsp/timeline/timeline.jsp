@@ -32,8 +32,7 @@
 		<c:forEach var="content" items="${contentViewList}">
 		<%-- 사용자이름/ 삭제버튼 --%>
 			<div class="d-flex justify-content-between">
-				<div class="font-weight-bold ml-3">${loginId}</div> <%-- session에서 가져오기 --%>
-				
+				<div class="font-weight-bold ml-3">${content.post.userId}</div> <%-- session에서 가져오기 --%>
 				<div> <%-- TODO: 게시글 작성자 = 로그인 된 사용자 일때만 나타나기 --%>
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png"
 					data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}" class="more-btn" type="button" alt="delete"  class="btn mr-3 d-none" width="20" height="20">
@@ -249,7 +248,7 @@
 		}); // deletePostBtn close
 		
 		// 좋아요 클릭
-		$('.like-btn').on('click', function(e){
+/* 		$('.like-btn').on('click', function(e){
 			e.preventDefault();
 			
 			// 어떤 글에 좋아요를 눌렀는지..! -> $('.like-btn')으로 이벤트를 잡게되면, 첫번째 것에만 계속 동작하게 됨.
@@ -269,7 +268,7 @@
 				}
 			})
 			
-		}); // like-btn close
+		}); */ // like-btn close
 		
 		// 댓글 쓰기
 		$('.commentBtn').on('click', function(e){

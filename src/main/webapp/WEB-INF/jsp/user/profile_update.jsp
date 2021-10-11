@@ -61,7 +61,7 @@
 	           	,contentType: false 
 				, success: function(data){
 					if (data.result == 'success'){
-						location.reload();
+						location.href= '/user/profile_view';
 					}
 				}
 				, error: function(e){
