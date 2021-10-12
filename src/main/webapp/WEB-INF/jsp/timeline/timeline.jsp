@@ -276,7 +276,7 @@
 			
 			// 어떤 글에 댓글쓰기 버튼을 눌렀는지 -> 게시글 번호 얻어내기
 			let postId = $(this).data('post-id');
-			alert(postId);
+			// alert(postId); 게시글 번호 잘 가져와지는지 체크!
 			
 			// 댓글 내용 commentInput${content.post.id}
 			let commentContent = $('#commentInput' + postId).val();
@@ -311,7 +311,7 @@
 			
 			// 어떤 댓글을 삭제하는지에 대한 정보 가져오기
 			let commentId = $(this).data("comment-id")
-			alert(commentId);
+			// alert(commentId); 댓글id 잘 가져와지는지 체크!
 			
 			// ajax로 요청
 			$.ajax({

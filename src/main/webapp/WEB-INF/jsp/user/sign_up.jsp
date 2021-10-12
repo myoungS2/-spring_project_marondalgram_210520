@@ -37,7 +37,7 @@
 					, data: {"loginId":loginId}
 					// 응답값
 					, success: function(data) {
-						alert(data.result); // true of false
+						// alert(data.result); // true of false
 						
 						if (data.result) {
 							// true = 중복

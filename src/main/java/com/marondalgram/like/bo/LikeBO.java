@@ -26,8 +26,9 @@ public class LikeBO {
 		if (userId == null) {
 			return false;
 		}
+		
 		int count = likeDAO.selectLikeCountByPostIdOrUserId(postId, userId);
-		return count > 0? true : false; // 이 부분 코드가 무슨 뜻일까...
+		return count > 0? true : false; // 이 부분 코드가 무슨 뜻일까...(if문 짧게 -> 삼항연산자)
 	}
 	
 	// select like count 

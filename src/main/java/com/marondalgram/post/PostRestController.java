@@ -95,7 +95,7 @@ public class PostRestController {
 	}
 	
 	/**
-	 * Like
+	 * Like Post
 	 * @param postId
 	 * @param request
 	 * @return
