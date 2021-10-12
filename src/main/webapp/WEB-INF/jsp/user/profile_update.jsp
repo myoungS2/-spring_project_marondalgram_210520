@@ -3,15 +3,15 @@
 <div class="w-50"> 
 		<div>
 			 <label for="nameInput">name</label>
-			 <input type="text" name="name" id="nameInput" class="form-control" >
+			 <input type="text" name="name" id="nameInput" class="form-control" value="${userUpdateInfo.name}">
 		</div>
 		<div>
 			 <label for="websiteInput">website</label>
-			 <input type="text" name="website" id="websiteInput" class="form-control">
+			 <input type="text" name="website" id="websiteInput" class="form-control" value="${userUpdateInfo.website}">
 		</div>
 		<div>
 			 <label for="introductionInput">introduction</label>
-			 <input type="text" name="introduce" id="introduceInput" class="form-control" >
+			 <input type="text" name="introduce" id="introduceInput" class="form-control" value="${userUpdateInfo.introduce}">
 		</div>
 	<%-- 프로필 업데이트 버튼 --%>
 	<div class="mt-3">
@@ -68,10 +68,31 @@
 					alert("Profile update has failed." + e);
 				} 
 			});  // ajax close
-			
-			
-			
 		}); // pfUpdateBtn close
+		
+		// input태그 눌렀을 때 값 비워주기 1
+		$('#nameInput').on('click', function(e){
+			e.preventDefault(); 
+			if($('#nameInput').val().trim() != null){
+				$('#nameInput').val('');
+			}
+		}); // nameInput close
+		
+		// input태그 눌렀을 때 값 비워주기 2
+		$('#websiteInput').on('click', function(e){
+			e.preventDefault(); 
+			if($('#websiteInput').val().trim() != null){
+				$('#websiteInput').val('');
+			}
+		}); // websiteInput close
+		
+		// input태그 눌렀을 때 값 비워주기 3
+		$('#introduceInput').on('click', function(e){
+			e.preventDefault(); 
+			if($('#introduceInput').val().trim() != null){
+				$('#introduceInput').val('');
+			}
+		}); // introduceInput close
 		
 		
 		

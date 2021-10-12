@@ -77,7 +77,14 @@ public class UserController {
 	
 	// profile update view 연결
 	@RequestMapping("/profile_update")
-	public String profileUpdate(Model model) {
+	public String profileUpdate(Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		
+		User userUpdateInfo = userBO.getUserInfo(userId);
+  		model.addAttribute("userUpdateInfo", userUpdateInfo);
+		
 		model.addAttribute("viewName", "user/profile_update");
 		return "template/layout_profile";
 	}
