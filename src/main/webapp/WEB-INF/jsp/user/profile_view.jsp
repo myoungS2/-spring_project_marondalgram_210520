@@ -17,11 +17,10 @@
 				</div>
 				<div class="ml-3">${userInfo.introduce}</div>
 			</div>
-		
 		<%-- 게시물 수 (count) --%>
 		<div>
-			<!-- <div class="font-weight-bold">647</div>
-			<span><small>게시물</small></span> -->
+			<div class="font-weight-bold">${postCount}</div>
+			<span><small>게시물</small></span>
 		</div>
 	</div>	
 	

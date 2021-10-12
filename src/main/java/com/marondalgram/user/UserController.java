@@ -20,7 +20,6 @@ import com.marondalgram.user.model.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
 	// user BO 연결
 	@Autowired
 	private UserBO userBO;
@@ -61,6 +60,9 @@ public class UserController {
 		
 		User userInfo = userBO.getUserInfo(userId);
   		model.addAttribute("userInfo", userInfo);
+  		
+  		int postCount = postBO.getPostCountByPostUserId(userId);
+  		model.addAttribute("postCount", postCount);
 		
 //		if (userId == userInfo.getId()) {
 //			List<ContentView> contentViewList = contentBO.generateContentViewList(userId); 

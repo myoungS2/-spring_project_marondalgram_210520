@@ -75,4 +75,12 @@
 		 ORDER BY 
 				`createdAt` DESC		
 	</select>
+	<select id="selectPostCountByPostUserId" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+		 	`post`
+		WHERE
+			`userId` = #{userId}
+	</select>
 </mapper>

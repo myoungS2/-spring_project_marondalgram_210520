@@ -27,12 +27,12 @@ public class PostBO {
 	@Autowired
 	private FileManagerService fileManagerService;
 	
-	// select DB
+	// select DB (전체 게시물 리스트 가져오기)
 	public List<Post> getPostList(){
 		return postDAO.selectPostList();
 	}
 	
-	// insert DB
+	// insert DB (새 게시물 작성)
 	public int createPost(int userId, String loginId, String content, MultipartFile file) {
 		String imgUrl = null;
 		
@@ -47,7 +47,7 @@ public class PostBO {
 		return postDAO.insertPost(userId, content, imgUrl);
 	}
 	
-	// delete DB
+	// delete DB (게시물 지우기)
 	public void deletePost(int postId) {
 		// postId로 post를 가져온다.
 		Post post = postDAO.selectPost(postId);
@@ -74,11 +74,15 @@ public class PostBO {
 		}
 	}
 	
-	// select DB
+	// select DB (로그인 한 사용자의 게시물)
 	public List<Post> getPostImg(int userId) {
 		return postDAO.selectPostImg(userId);
 	}
 	
+	// select DB (게시물 수 count)
+	public int getPostCountByPostUserId(int userId) {
+		return postDAO.selectPostCountByPostUserId(userId);
+	}
 }
 
 

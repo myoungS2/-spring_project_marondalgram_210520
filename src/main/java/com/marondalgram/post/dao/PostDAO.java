@@ -27,4 +27,8 @@ public interface PostDAO {
 	
 	// select DB
 	public List<Post> selectPostImg(int userId);
+	
+	// select DB
+	public int selectPostCountByPostUserId(int userId);
+	
 }
