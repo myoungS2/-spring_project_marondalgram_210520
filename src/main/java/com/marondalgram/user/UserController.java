@@ -56,17 +56,18 @@ public class UserController {
 		 // session 검증
 		Integer userId = (Integer) session.getAttribute("userId");
 		
+		List<Post> postImg = postBO.getPostImg(userId);
+		model.addAttribute("postImg", postImg);
+		
 		User userInfo = userBO.getUserInfo(userId);
   		model.addAttribute("userInfo", userInfo);
 		
-		if (userId == userInfo.getId()) {
-			List<ContentView> contentViewList = contentBO.generateContentViewList(userId); 
-			model.addAttribute("contentViewList", contentViewList);
-		}
+//		if (userId == userInfo.getId()) {
+//			List<ContentView> contentViewList = contentBO.generateContentViewList(userId); 
+//			model.addAttribute("contentViewList", contentViewList);
+//		}
 //		List<Post> postList = postBO.getPostList(); //  DB에 가까운 객체 -> Entity
 //		model.addAttribute("postList", postList);
-		
-		
 		
 		model.addAttribute("viewName", "user/profile_view");
 		return "template/layout_profile";

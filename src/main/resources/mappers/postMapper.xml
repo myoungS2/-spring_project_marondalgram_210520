@@ -60,4 +60,19 @@
 		WHERE
 			`id` =#{id}	
 	</delete>
+	<select id="selectPostImg" resultType="com.marondalgram.post.model.Post">
+		SELECT
+			`id`
+			,`userId`
+			,`imgUrl`
+			,`content`
+			, `createdAt`
+			, `updatedAt`
+		 FROM
+		 	`post`
+		 WHERE
+		  	`userId` = #{userId}
+		 ORDER BY 
+				`createdAt` DESC		
+	</select>
 </mapper>

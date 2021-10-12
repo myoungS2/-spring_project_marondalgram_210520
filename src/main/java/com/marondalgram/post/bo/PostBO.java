@@ -72,12 +72,12 @@ public class PostBO {
 				logger.error("[delete post] 그림 삭제 실패 postId: {}, path: {}", postId, imgUrl); // 그림 삭제를 실패하더라도, post는 지울 것..! (return x)
 			}
 		}
-		
-		
-		
-		
 	}
-
+	
+	// select DB
+	public List<Post> getPostImg(int userId) {
+		return postDAO.selectPostImg(userId);
+	}
 	
 }
 

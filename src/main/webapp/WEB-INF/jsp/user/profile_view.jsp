@@ -32,12 +32,11 @@
 	
 	<%-- 사용자가 올린 게시물(사진만) --%>
 	<div class="d-flex felx-wrap">
-			<div class="postImg w-100" width="170" height="170">
-			<c:if test="${userId eq userInfo.id}">
-				<c:forEach var="content" items="${contentViewList}">
-					<img src="${content.post.imgUrl}" class="m-1" alt="postImg" width="170" height="170">
-				</c:forEach>
-			</c:if>	
-			</div>
+		<div class="postImg w-100" width="170" height="170">
+			<c:forEach var="postImg" items="${postImg}">
+				<img src="${postImg.imgUrl}" class="m-1" alt="postImg" width="170" height="170">
+			</c:forEach>
+		</div>
 	</div>
+	
 </div>	

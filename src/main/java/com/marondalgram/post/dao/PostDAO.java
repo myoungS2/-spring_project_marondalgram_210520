@@ -24,4 +24,7 @@ public interface PostDAO {
 	
 	// delete DB
 	public void deletePost(int id);
+	
+	// select DB
+	public List<Post> selectPostImg(int userId);
 }
